@@ -1,0 +1,13 @@
+# docker compose
+# 멀티 컨테이너 환경에서 컨테이너간의 통신을 가능하게해줌
+
+version: "3"
+services:
+ # 컨테이너 이름
+ redis-server:
+  image: "redis"
+ # 컨테이너 이름
+ node-app:
+  build: .
+  ports:
+   - "5000:8080"
