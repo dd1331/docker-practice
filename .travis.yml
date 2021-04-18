@@ -6,25 +6,19 @@ services:
   - docker
 
 before_install:
-  - echo "start creating an image with dockerfile"
-  - cd docker-react-app/
-  - docker build -t charlie/docker-react -f Dockerfile.dev .
+  - docker build -t charlie/docker-frontend-test -f ./docker-frontend/Dockerfile.dev ./frontend
 
 script:
-  - docker run -e CI=true charlie/docker-react npm run test -- --coverage
+  - docker run -e CI=true charlie/docker-frontend-test npm run test -- --coverage
 
 after_success:
   - echo "test succeed!"
+  - docker build -t charlie/docker-frontend ./docker.frontend
+  - docker build -t charlie/docker-backend ./docker-backend
+  - docker build -t charlie/docker-nginx ./nginx
 
-deploy:
-  provider: elasticbeanstalk
-  region: "ap-northeast-2"
-  app: "docker-react-app"
-  env: "Dockerreactapp-env"
-  bucket_name: "elasticbeanstalk-ap-northeast-2-145358528946"
-  bucket_path: "docker-react-app"
-  on:
-    branch: master
-    
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: $AWS_SECRET_ACCESS_KEY
+  - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" -password-stdin
+
+  - docker push charlie/docker-frontend
+  - docker push charlie/docker-backend
+  - docker push charlie/docker-nginx
