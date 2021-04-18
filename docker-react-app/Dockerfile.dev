@@ -14,4 +14,4 @@ CMD [ "npm", "run", "start" ]
 # docker build -f Dockerfile.dev ./
 
 # 컨테이너 내부에서 테스트 실행
-# docker run -it charlie/docker-react npm run test
+# docker run -it dd1331/docker-react npm run test

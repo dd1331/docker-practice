@@ -20,4 +20,4 @@ COPY --from=builder /usr/src/app/build /usr/share/nginx/html
 
 # docker run build .
 # nginx 기본포트는 80
-# docker run -p 8080:80 charlie/docker-react
+# docker run -p 8080:80 dd1331/docker-react
