@@ -13,7 +13,7 @@ script:
 
 after_success:
   - echo "test succeed!"
-  - docker build -t dd1331/docker-frontend ./docker.frontend
+  - docker build -t dd1331/docker-frontend ./docker-frontend
   - docker build -t dd1331/docker-backend ./docker-backend
   - docker build -t dd1331/docker-nginx ./nginx
 
