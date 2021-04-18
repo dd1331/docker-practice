@@ -6,7 +6,7 @@ services:
   - docker
 
 before_install:
-  - docker build -t charlie/docker-frontend-test -f ./docker-frontend/Dockerfile.dev ./frontend
+  - docker build -t charlie/docker-frontend-test -f ./docker-frontend/Dockerfile.dev ./docker-frontend
 
 script:
   - docker run -e CI=true charlie/docker-frontend-test npm run test -- --coverage
