@@ -26,6 +26,14 @@ services:
   volumes: 
    - /app/node_modules
    - ./docker-backend:/app
+  # for aws
+  environment: 
+    MYSQL_HOST: mysql
+    MYSQL_USER: root
+    MYSQL_ROOT_PASSWORD: a9884592
+    MYSQL_DATABASE: myapp
+    MYSQL_PORT: 3306
+
 
 #  mysql:
 #   build: ./mysql
